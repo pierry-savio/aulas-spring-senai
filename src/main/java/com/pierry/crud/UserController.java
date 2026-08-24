@@ -1,4 +1,4 @@
-package com.pierry.calculator;
+package com.pierry.crud;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +13,11 @@ public class UserController {
     @GetMapping
     public ArrayList<User> listAllUsers() {
         return users;
+    }
+
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable int id) {
+        return users.get(id);
     }
 
     @PostMapping

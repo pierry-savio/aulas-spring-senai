@@ -1,4 +1,4 @@
-package com.pierry.calculator;
+package com.pierry.crud;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

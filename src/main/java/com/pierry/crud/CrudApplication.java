@@ -1,13 +1,13 @@
-package com.pierry.calculator;
+package com.pierry.crud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CalculatorApplication {
+public class CrudApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CalculatorApplication.class, args);
+        SpringApplication.run(CrudApplication.class, args);
     }
 
 }

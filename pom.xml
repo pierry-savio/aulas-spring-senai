@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.pierry</groupId>
-    <artifactId>calculator</artifactId>
+    <artifactId>Crud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>calculator</name>
     <description>calculator</description>
