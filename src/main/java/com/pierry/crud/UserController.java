@@ -22,6 +22,7 @@ public class UserController {
 
     @PostMapping
     public User addUser(@RequestBody User user){
+        user.setId(String.valueOf(users.size()));
         users.add(user);
         return users.getLast();
     }
