@@ -1,43 +1,53 @@
 package com.pierry.crud;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
-    public ArrayList<User> users = new ArrayList<>();
+    final UserRepository userRepository;
 
     @GetMapping
-    public ArrayList<User> listAllUsers() {
-        return users;
+    public List<User> listAllUsers() {
+        return userRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable int id) {
-        return users.get(id);
+    public User getUserById(@PathVariable UUID id) {
+
+        Optional<User> userOpt = userRepository.findAllById(id);
+
+        if (userOpt.isPresent()){
+            return userOpt.get();
+        } else{
+            throw new RuntimeException("Usuário não encontrado");
+        }
     }
 
     @PostMapping
     public User addUser(@RequestBody User user){
-        user.setId(String.valueOf(users.size()));
-        users.add(user);
-        return users.getLast();
+        return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable int id, @RequestBody User user){
-        User updatedUser = users.get(id);
-        updatedUser.setName(user.getName());
-        updatedUser.setCpf(user.getCpf());
-        updatedUser.setEmail(user.getEmail());
-        return updatedUser;
+    public User updateUser(@PathVariable UUID id, @RequestBody User user){
+        User currentUser = getUserById(id);
+        currentUser.setName(user.getName());
+        currentUser.setCpf(user.getCpf());
+        currentUser.setEmail(user.getEmail());
+        return userRepository.save(currentUser);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable int id){
-        users.remove(id);
+    public void deleteUser(@PathVariable UUID id){
+        userRepository.deleteById(id);
     }
 }
