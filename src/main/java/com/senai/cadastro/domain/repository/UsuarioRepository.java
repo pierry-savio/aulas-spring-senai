@@ -1,5 +1,6 @@
-package com.senai.cadastro;
+package com.senai.cadastro.domain.repository;
 
+import com.senai.cadastro.domain.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

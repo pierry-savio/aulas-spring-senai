@@ -1,5 +1,8 @@
-package com.senai.cadastro;
+package com.senai.cadastro.interface_ui.controller;
 
+import com.senai.cadastro.domain.entity.Usuario;
+import com.senai.cadastro.domain.repository.UsuarioRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,12 +39,12 @@ public class UsuarioController {
     }
 
     @PostMapping()
-    public void cadastrarUsuarios(@RequestBody Usuario usuario) {
+    public void cadastrarUsuarios(@Valid @RequestBody Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 
     @PutMapping("/{id}")
-    public Usuario atualizarUsuario(@PathVariable UUID id, @RequestBody Usuario usuario) {
+    public Usuario atualizarUsuario(@PathVariable UUID id, @Valid @RequestBody Usuario usuario) {
         Usuario usuarioExistente = buscarUsuarioPorId(id);
         usuarioExistente.setNome(usuario.getNome());
         usuarioExistente.setCpf(usuario.getCpf());

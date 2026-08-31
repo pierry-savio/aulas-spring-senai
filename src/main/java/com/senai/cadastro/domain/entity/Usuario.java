@@ -1,4 +1,4 @@
-package com.senai.cadastro;
+package com.senai.cadastro.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
