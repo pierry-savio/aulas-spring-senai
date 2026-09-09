@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.senai</groupId>
-    <artifactId>cadastro</artifactId>
+    <artifactId>cadastroT1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cadastro</name>
-    <description>cadastro</description>
+    <name>cadastroT1</name>
+    <description>cadastroT1</description>
     <url/>
     <licenses>
         <license/>

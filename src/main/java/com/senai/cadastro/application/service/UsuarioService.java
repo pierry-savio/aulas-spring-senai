@@ -7,7 +7,6 @@ import com.senai.cadastro.domain.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,26 +18,28 @@ public class UsuarioService {
     final UsuarioRepository usuarioRepository;
 
     public List<UsuarioResponseDTO> findAll() {
-        return usuarioRepository.findAll().stream().map(
-                UsuarioResponseDTO::fromEntity
-        ).toList();
+        return usuarioRepository.findAll().stream()
+                .map(UsuarioResponseDTO::fromEntity)
+                .toList();
     }
 
     public UsuarioResponseDTO findById(UUID id) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
         if(usuarioOpt.isPresent()) {
-            return UsuarioResponseDTO.fromEntity(usuarioOpt.get());
+            return  UsuarioResponseDTO.fromEntity(usuarioOpt.get());
         } else {
             throw new RuntimeException("Usuário não encontrado");
         }
     }
+
     public UsuarioResponseDTO save(UsuarioRequestDTO usuarioRequestDTO) {
         return UsuarioResponseDTO.fromEntity(
-                usuarioRepository.save(usuarioRequestDTO.toEntity())
+                    usuarioRepository.save(usuarioRequestDTO.toEntity())
         );
     }
 
-    public UsuarioResponseDTO update(UUID id, UsuarioRequestDTO usuarioRequestDTO) {
+    public UsuarioResponseDTO update(UsuarioRequestDTO usuarioRequestDTO, UUID id) {
+
         Usuario usuarioExistente = usuarioRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Usuário não encontrado")
         );
@@ -56,8 +57,7 @@ public class UsuarioService {
     public void delete(UUID id) {
         if(usuarioRepository.existsById(id)) {
             usuarioRepository.deleteById(id);
-        } else {
+        }else
             throw new RuntimeException("Usuário não encontrado");
-        }
     }
 }
